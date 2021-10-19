@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+{% extends 'index.html' %}
+{% block content %}
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <form method="POST" action="/" name="note" class="col-md-6 col-lg-8 col-sm-12 mt-lg-5 rounded shadow p-3">
+                    <div class="form-group">
+                        <label for="title">MyTitle</label>
+                        <input type="text" name="title" class="form-control" placeholder="Title here">
+                    </div>
+                    <div class="form-group">
+                        <label for="what">MyDesciption</label>
+                        <input type="text" name="what" class="form-control" placeholder="Description here">
+                    </div>
+                    <div class="row justify-content-around mt-4">
+                        <input type="submit" class="col-3 btn btn-primary" value="Save">
+                        <button class="col-3 btn btn-danger">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <h1 class="display-3 text-center text-primary">All your Notes</h1>
+            <div class="mt-lg-3 d-flex flex-row overflow-auto flex-nowrap">
+                    {%for one in all%}
+                        <div class="card col-3 p-3 shadow rounded me-lg-5">
+                            <h1 class="display-5 card-title text-info">{{one.id}} {{one.title}}</h1>
+                            <p>{{loop.index}}</p>
+                            <div class="card-body">
+                                <p class="display-6 card-text text-warning">{{one.what}}</p>
+                                <p class="float-end text-secondary">{{one.doc}}</p>
+                                <a href="/change/{{one.id}}" class="btn btn-outline-warning">Edit</a>
+                                <a href="/erase/{{one.id}}" class="btn btn-outline-danger">Delete</a>
+                            </div>
+                        </div>
+                    {%endfor%}
+            </div>
+
+        </div>
+{% endblock content%}
