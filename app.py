@@ -26,7 +26,7 @@ class notes(base.Model):
 
 
 @app.route('/change/<int:num>',methods=['GET','POST'])
-def editing(num):
+def edit(num):
     data=notes.query.filter_by(id=num).first()
     if request.method=="POST":
         data.title=request.form["title"]
